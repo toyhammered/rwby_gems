@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+	<!--<html manifest="manifest.appcache" lang="en-US">-->
+	<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> RWBY Gems </title>
+
+		<!-- setting up viewpoint -->
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+
+		<!-- enabling web application mode -->
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<!-- icons for the game (this shows up on iphone for ei:) -->
+
+		<link rel="shortcut icon" href="public/img/icons/favicon.ico">
+		<link rel="apple-touch-icon" sizes="57x57" href="public/img/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="public/img/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="public/img/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="public/img/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="public/img/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="public/img/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="public/img/icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="public/img/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="public/img/icons/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="public/img/icons/favicon-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="public/img/icons/favicon-160x160.png" sizes="160x160">
+		<link rel="icon" type="image/png" href="public/img/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="public/img/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="public/img/icons/favicon-32x32.png" sizes="32x32">
+		<meta name="msapplication-TileColor" content="#000000">
+		<meta name="msapplication-TileImage" content="public/img/icons/mstile-144x144.png">
+		<meta name="msapplication-config" content="public/img/icons/browserconfig.xml">
+
+		<!-- specifying a startup image -->
+		<link rel="apple-touch-startup-image"
+			  href="img/ios_startup/ios-startup-748x1024.png"
+			  media="screen and (min-device-width: 768px)
+			  				and (orientation: landscape)" />
+		<link rel="apple-touch-startup-image"
+			  href="img/ios_startup/ios-startup-768x1004.png"
+			  media="screen and (min-device-width: 768px)
+			  				and (orientation: portrait)" />
+		<link rel="apple-touch-startup-image"
+			  href="img/ios_startup/ios-startup-320x460.png"
+			  media="screen and (min-device-width: 768px)
+			  				and (max-device-width: 320px)" />
+
+
+		<!-- Choosing between diffrent status bars (ie: black) for ipad 
+			 Can also choose black-translucent but it is broken in iOS 7 -->
+		<meta name="apple-mobile-web-app-status-bar-style"
+					content="black" />
+
+		<!-- prevents using -webkit- and all those does automatically -->
+		<script src="public/script/lib/prefixfree.min.js"></script>
+
+		<!-- main css style sheet -->
+		<link rel="stylesheet" href="public/css/main.css" />
+
+		<!-- javascript background -->
+		<!--<script src="public/script/background.js"></script>-->
+
+		<!-- fontface css style sheet -->
+		<link rel="stylesheet" href="public/css/fontfaces.css" />
+
+		<!-- checking queries -->
+		<link rel="stylesheet"
+			  href="public/css/mobile.css"
+			  media="screen and (max-device-width: 768px)
+			  				and (orientation: portrait),
+			  		 screen and (max-device-width: 1024px)
+			  		 		and (orientation: landscape)"/>
+
+		<!-- jewel script sheet -->
+		<script src="public/script/jewel.js"></script>
+		<script>
+        window.addEventListener("load", function() {
+            jewel.load("public/script/dom.js");
+            
+
+            if (jewel.isStandalone()) {
+                jewel.load("public/script/screen.splash.js", jewel.setup);
+                jewel.load("public/script/screen.main-menu.js");
+
+                if (jewel.hasWebWorkers()) {
+                    jewel.preload("public/script/board.worker.js");
+                    jewel.load("public/script/board.worker-interface.js");
+                } else {
+                    jewel.load("public/script/board.js");
+                }
+
+                jewel.load("public/script/screen.game.js");
+                jewel.load("public/script/screen.high-scores.js");
+                jewel.load("public/script/requestAnimationFrame.js");
+                jewel.load("public/script/display.canvas.js");
+                jewel.load("public/script/input.js");
+                jewel.load("public/script/audio.js");
+                jewel.load("public/script/storage.js");
+            } else {
+                jewel.load("public/script/screen.install.js", jewel.setup);
+            }
+        });
+    </script>
+
+	</head>
+
+	<body>
+		<div id="game">
+			<!-- game goes here -->
+
+			<div class="screen" id="splash-screen">
+				<h1 class="logo"><span class="red">R</span><span class="white">W</span><span class="black">B</span><span class="yellow">Y</span> <br/><span class="gems">Gems</span></h1>
+				<div class="progress">
+					<div class="indicator"></div>
+				</div>
+				<span class="continue">Click to Continue</span>
+			</div>
+
+			<div class="screen" id="install-screen">
+           <h1 class="logo"><span class="red">R</span><span class="white">W</span><span class="black">B</span><span class="yellow">Y</span> <br/><span class="gems">Gems</span></h1>
+            <span>
+                Click the <img src="public/img/install-icon.png"
+                               alt="Install icon"> 
+                button to install the game to your home screen.
+           	</span>
+        	</div><!-- end of install screen -->
+
+			<div class="screen" id="main-menu">
+				<h1 class="logo"><span class="red">R</span><span class="white">W</span><span class="black">B</span><span class="yellow">Y</span> <br/><span class="gems">Gems</span></h1>
+				<ul class="menu">
+					<li><button name="game-screen">Play</button></li>
+					<li><button name="high-scores">Highscore</button></li>
+					<li><button name="about">About</button></li>
+					<li><button name="exit-screen">Exit</button></li>
+				</ul>
+			</div><!-- end of div class screen -->
+
+			<div class="screen" id="game-screen">
+	            <div class="game-board">
+	                <div class="announcement"></div>
+	            </div>
+
+	            <div class="game-info">
+	                <label class="level">Level: <span></span></label>
+	                <label class="score">Score: <span></span></label>
+	            </div>
+
+	            <div class="time progress"><div class="indicator"></div></div>
+	            <footer>
+	                <button class="exit">Exit</button>
+	                <button class="pause">Pause</button>
+	            </footer>
+
+	            <div class="pause-overlay">
+	                <div class="pause-text">Pause</div>
+	            </div>
+	        </div>
+	        
+			<div class="screen" id="high-scores">
+				<h2 class="logo">High score</h2>
+				<ol class="score-list">
+					
+				</ol>
+				<footer>
+					<button class="back">Back</button>
+				</footer>
+			</div>
+			<div id="backgroundDiv">
+
+			</div>
+
+			 
+		</div> <!-- end of id: game -->
+
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
